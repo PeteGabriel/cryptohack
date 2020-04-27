@@ -17,6 +17,21 @@ const (
 	Base64 = "base64"
 )
 
+
+/**
+This program allows for decoding on the fly by providing the following kind
+of argument:
+	{"type": "base64", "encoded": "bm9uZXZlbnRzX2dyYXlfQ2xpZmY="}
+
+Based upon the type property, it decodes and sends out the following data:
+	{"type": "base64", "decoded":"Ym05dVpYWmxiblJ6WDJkeVlYbGZRMnhwWm1ZPQ=="}
+
+It supports the following types:
+	base64
+	bigint
+	rot13
+	utf-8
+ */
 func main() {
 	fmt.Println("...")
 	for true {
