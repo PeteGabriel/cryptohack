@@ -1,6 +1,7 @@
 package enc
 
 import (
+	"bytes"
 	"encoding/base64"
 	"encoding/hex"
 	"math/big"
@@ -47,8 +48,13 @@ func HexToBase64(hexStr string) string {
 }
 
 func Base64ToStr(b string) string {
-	v := base64.StdEncoding.EncodeToString([]byte(b))
-	return v
+	src := []byte(b)
+	dst := make([]byte, len(src))
+	count, err := base64.StdEncoding.Decode(dst, src)
+	if err != nil || count == 0  {
+		return ""
+	}
+	return string(bytes.Trim(dst, "\x00"))
 }
 
 /**

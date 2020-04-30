@@ -15,6 +15,7 @@ const (
 	Rot13 = "rot13"
 	UTF8 = "utf-8"
 	Base64 = "base64"
+	HEX= "hex"
 )
 
 
@@ -31,6 +32,7 @@ It supports the following types:
 	bigint
 	rot13
 	utf-8
+	hex
  */
 func main() {
 	fmt.Println("...")
@@ -46,7 +48,9 @@ func main() {
 		case Rot13:
 			fmt.Println(buildRes(i.T, strings.Map(enc.Rot13, i.D.(string))))
 		case BigInt:
-			bi, _ := new(big.Int).SetString(i.D.(string), 16)
+			b := []byte(i.D.(string))
+			//remove hexadecimal notation
+			bi, _ := new(big.Int).SetString(string(b[2:]), 16)
 			fmt.Println(buildRes(i.T, enc.NumToString(bi)))
 		case UTF8:
 			//the default type assigned to is float64, I had to workaround this
@@ -58,6 +62,8 @@ func main() {
 			fmt.Println(buildRes(i.T, enc.AsciToStr(b)))
 		case Base64:
 			fmt.Println(buildRes(i.T, enc.Base64ToStr(i.D.(string))))
+		case HEX:
+			fmt.Println(buildRes(i.T, enc.HexToStr(i.D.(string))))
 		default:
 			fmt.Println("bad type")
 		}
