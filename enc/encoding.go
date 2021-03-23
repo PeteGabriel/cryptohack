@@ -66,6 +66,9 @@ func NumToString(n *big.Int) string {
 	return AsciToStr(b)
 }
 
-func strToInt(str string) string {
-	return ""
+/**
+ * CharToInt converts a char to ASCII representation.
+ */
+func CharToInt(c int32) uint8 {
+	return byte(c)
 }

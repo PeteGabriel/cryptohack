@@ -43,3 +43,10 @@ func TestRot13OverString(t *testing.T){
 	r := strings.Map(Rot13, s)
 	is.Equal(r, "ersat`_authoritarianisms_evinced")
 }
+
+func TestStringToAsciRepresentation(t *testing.T){
+	is := is.New(t)
+	s := 'a'
+	r := CharToInt(s)
+	is.Equal(r, uint8(97))
+}
